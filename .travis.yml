@@ -1,0 +1,17 @@
+language: php
+
+php:
+- 5.3
+- 5.4
+- 5.5
+
+before_script:
+- curl -s http://getcomposer.org/installer | php
+- php composer.phar install --dev
+
+script: phpunit
+
+notifications:
+  hipchat:
+    rooms:
+      secure: ZazsrW/7r8yRS0FWnmNI4OjEagrubjzOZ1kcg08Z69L3ZFHN/6UR6N5Rv4b9xDVZiYVA48iOX7hVoJPVVtodvkDZS8kX0oxWEd7r4ZaohLTO7JXrVdvhmAgWv8FEndzWZ2xItZSIrvxK5AM19QQolOqXs3+0souQNgWG/4Y/IU4=
