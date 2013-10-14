@@ -1,5 +1,6 @@
 {
     "name": "creitive/breadcrumbs",
+    "version": "1.0.1",
     "description": "Simple breadcrumbs class",
     "keywords":[
         "laravel",
