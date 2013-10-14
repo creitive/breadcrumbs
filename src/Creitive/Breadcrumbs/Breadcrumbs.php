@@ -110,6 +110,10 @@ class Breadcrumbs {
 			$href = mb_substr($href, 1, $length - 1);
 			$this->addCrumb($name, $href, true);
 		}
+		else if ((mb_substr($href, 0, 7) === 'http://') && !$hrefIsFullUrl)
+		{
+			$this->addCrumb($name, $href, true);
+		}
 		else
 		{
 			$crumb = array(
@@ -385,7 +389,11 @@ class Breadcrumbs {
 				$hrefSegments[] = $crumb['href'];
 			}
 
-			$href = '/' . implode('/', $hrefSegments);
+			$href = implode('/', $hrefSegments);
+
+			if (!preg_match('#^https?://.*#', $href)) {
+				$href = "/{$href}";
+			}
 
 			$output .= $this->renderCrumb($crumb['name'], $href, $isLast);
 		}

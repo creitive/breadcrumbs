@@ -53,12 +53,16 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 			array(
 				array(
 					array(
-						'name' => 'Home',
-						'href' => '/',
+						'name' => 'Admin home',
+						'href' => '/admin',
 					),
 					array(
-						'name' => 'Products',
-						'href' => '/products',
+						'name' => 'Stores',
+						'href' => 'stores',
+					),
+					array(
+						'name' => 'Store Foo',
+						'href' => 'http://vsc.localhost/admin/stores/store-foo',
 					),
 				),
 				array(
@@ -153,5 +157,20 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 		Assert::count(1, $crawler->filter('ul.'.$classes[0]));
 		Assert::count(count($crumbs), $crawler->filter('li'));
 		Assert::count(0, $crawler->filter('span.divider'));
+	}
+
+	/**
+	 * @dataProvider fullCrumbProvider
+	 */
+	public function testHttpLinks($crumbs, $classes)
+	{
+		$b = new Breadcrumbs($crumbs, $classes);
+		$i = 0;
+		$crumbs = $b->getBreadcrumbs();
+		foreach ($crumbs as $crumb)
+		{
+			Assert::equals($crumb['href'], $crumbs[$i]['href']);
+			$i++;
+		}
 	}
 }
