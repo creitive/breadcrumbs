@@ -20,7 +20,7 @@
     "license": "MIT License",
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.0.x"
+        "illuminate/support": "4.x"
     },
     "require-dev":{
         "way/phpunit-wrappers": "dev-master",
