@@ -418,6 +418,16 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * Return the total number of breadcrumbs
+	 *
+	 * @return int
+	 */
+	public function count()
+	{
+		return count($this->breadcrumbs);
+	}
+
+	/**
 	 * `__toString` magic method.
 	 *
 	 * @return string
