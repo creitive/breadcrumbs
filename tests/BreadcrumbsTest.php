@@ -173,4 +173,14 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 			$i++;
 		}
 	}
+
+	public function testCountBreadcrumbs()
+	{
+		$b = new Breadcrumbs();
+		$b->addCrumb('foo', 'bar');
+		$b->addCrumb('foo', 'bar');
+		$b->addCrumb('foo', 'bar');
+
+		Assert::equals(3, $b->count());
+	}
 }

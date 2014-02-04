@@ -333,6 +333,16 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * Gets the current amount of breadcrumbs
+	 *
+	 * @return int
+	 */
+	public function count()
+	{
+		return count($this->breadcrumbs);
+	}
+
+	/**
 	 * Renders a single breadcrumb, Twitter Bootstrap-style.
 	 *
 	 * @param  string  $name
