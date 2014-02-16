@@ -343,6 +343,16 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * Checks whether there are any breadcrumbs added yet.
+	 *
+	 * @return boolean
+	 */
+	public function isEmpty()
+	{
+		return $this->count() === 0;
+	}
+
+	/**
 	 * Renders a single breadcrumb, Twitter Bootstrap-style.
 	 *
 	 * @param  string  $name

@@ -183,4 +183,15 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 
 		Assert::equals(3, $b->count());
 	}
+
+	public function testIsEmpty()
+	{
+		$b = new Breadcrumbs();
+
+		Assert::true($b->isEmpty());
+
+		$b->addCrumb('foo', 'bar');
+
+		Assert::false($b->isEmpty());
+	}
 }
