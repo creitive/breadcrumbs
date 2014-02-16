@@ -114,6 +114,10 @@ class Breadcrumbs {
 		{
 			$this->addCrumb($name, $href, true);
 		}
+		else if ((mb_substr($href, 0, 8) === 'https://') && !$hrefIsFullUrl)
+		{
+			$this->addCrumb($name, $href, true);
+		}
 		else
 		{
 			$crumb = array(
