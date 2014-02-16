@@ -163,12 +163,14 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider cssClassesProvider
 	 */
-	public function testCssClasses($classes)
+	public function testCssClassesMethods($classes)
 	{
 		$b = new Breadcrumbs(array(), $classes);
 		Assert::count(count($classes), $b->getBreadcrumbsCssClasses());
+
 		$b->removeCssClasses($classes);
 		Assert::count(0, $b->getBreadcrumbsCssClasses());
+
 		$b->addCssClasses($classes);
 		Assert::count(count($classes), $b->getBreadcrumbsCssClasses());
 	}
@@ -304,8 +306,9 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 
 		$crawler = new Symfony\Component\DomCrawler\Crawler($b->render());
 
-		Assert::count(1, $crawler->filter('ul.'.$classes[0]));
-		Assert::count(count($crumbs), $crawler->filter('li'));
+		/**
+		 * There should be no `span.divider` elements present.
+		 */
 		Assert::count(0, $crawler->filter('span.divider'));
 	}
 
