@@ -353,6 +353,16 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * Removes all breadcrumbs.
+	 *
+	 * @return void
+	 */
+	public function removeAll()
+	{
+		$this->breadcrumbs = array();
+	}
+
+	/**
 	 * Renders a single breadcrumb, Twitter Bootstrap-style.
 	 *
 	 * @param  string  $name

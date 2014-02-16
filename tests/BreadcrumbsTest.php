@@ -194,4 +194,16 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 
 		Assert::false($b->isEmpty());
 	}
+
+	/**
+	 * @dataProvider crumbProvider
+	 */
+	public function testRemoveAll($crumbs)
+	{
+		$b = new Breadcrumbs($crumbs);
+
+		$b->removeAll();
+
+		Assert::true($b->isEmpty());
+	}
 }
