@@ -159,7 +159,7 @@ echo $breadcrumbs;
 Note that crumb titles are rendered without escaping HTML characters, which was designed for flexibility, allowing you to use, say, `<img>` elements as breadcrumbs, which means that you should escape any text-content yourself when adding crumbs:
 
 ```php
-Breadcrumbs::addCrumbs('<img src="/images/foo.png">', '/foo');
+Breadcrumbs::addCrumb('<img src="/images/foo.png">', '/foo');
 Breadcrumbs::addCrumb(htmlspecialchars($userSubmittedName), 'bar');
 ```
 
