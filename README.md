@@ -134,6 +134,16 @@ Breadcrumbs::setDivider('»');
 The dividers are rendered as `<span>`s with the `divider` CSS class. If you would like to use the new Bootstrap 3 HTML (which uses `::before` CSS pseudo-element to style the separators), just set the divider to an empty string or `null`, and those elements will not be rendered at all in the HTML.
 
 
+### The List Element
+
+The default list element used to wrap the breadcrumbs, is `ul`. To change it, use the setListElement method like so:
+
+```php
+Breadcrumbs::setListElement('ol');
+```
+
+Note that if you are using Bootstrap 3, `ol` is the element currently used for the breadcrumbs-component.
+
 ### Output
 
 Finally, when you actually want to display your breadcrumbs, all you need to do is call the `render()` method from the facade:
