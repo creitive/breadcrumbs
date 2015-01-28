@@ -142,8 +142,6 @@ The default list element used to wrap the breadcrumbs, is `ul`. To change it, us
 Breadcrumbs::setListElement('ol');
 ```
 
-Note that if you are using Bootstrap 3, `ol` is the element currently used for the breadcrumbs-component.
-
 ### Output
 
 Finally, when you actually want to display your breadcrumbs, all you need to do is call the `render()` method from the facade:
