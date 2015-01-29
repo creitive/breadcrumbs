@@ -195,6 +195,24 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Tests whether `setListElement()` works correctly.
+	 *
+	 * @dataProvider crumbsProvider
+	 */
+	public function testSetListElement($crumbs)
+	{
+	    $b = new Breadcrumbs($crumbs);
+	    $b->setListElement('ol');
+
+	    $crawler = new Symfony\Component\DomCrawler\Crawler($b->render());
+
+	    /**
+	     * There should only be one `ol` element.
+	     */
+	    Assert::count(1, $crawler->filter('ol'));
+	}
+
+	/**
 	 * Tests whether adding breadcrumbs one by one works, using
 	 * `Breadcrumbs::addCrumb()`.
 	 *
