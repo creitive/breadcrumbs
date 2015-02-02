@@ -23,6 +23,11 @@ class Breadcrumbs {
 	 * @var string
 	 */
 	protected $divider = '/';
+	
+	/**
+	 * The DOM-element that wraps the breadcrumbs. Set to ul by default.
+	 */
+	protected $listElement = 'ul';
 
 	/**
 	 * The class constructor. Accepts an optional array of breadcrumbs, and an
@@ -325,6 +330,25 @@ class Breadcrumbs {
 	{
 		return $this->divider;
 	}
+	
+	/**
+	 * Set the containing list DOM element
+	 *
+	 * @param string $element
+	 */
+	public function setListElement($element)
+	{
+		if (!is_string($element))
+		{
+			throw new \InvalidArgumentException(
+				'Breadcrumbs::setListElement() only accepts strings, but '
+				. (is_object($element) ? get_class($element) : gettype($element))
+				. ' given: ' . print_r($element, true)
+			);
+		}
+
+		$this->listElement = $element;
+	}
 
 	/**
 	 * Gets the currently configured breadcrumbs.
@@ -448,7 +472,9 @@ class Breadcrumbs {
 		}
 
 		$cssClasses = implode(' ', $this->breadcrumbsCssClasses);
-		return '<ul class="' . $cssClasses .'">' . $this->renderCrumbs() . '</ul>';
+		return '<'. $this->listElement .' class="' . $cssClasses .'">' 
+			   . $this->renderCrumbs() 
+			   . '</'. $this->listElement .'>';
 	}
 
 	/**
