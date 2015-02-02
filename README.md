@@ -9,29 +9,11 @@ Laravel 4 Breadcrumbs
 Installation
 ------------
 
-### composer.json (recommended for Laravel 4, and any other framework using the same IoC dependency injection as L4)
-
-Just add the package to your `composer.json` require section:
-
-```js
-{
-	"require": {
-		// ...
-		"creitive/breadcrumbs": "dev-master"
-	}
-	// ...
-}
-```
-
-After that, run `composer update`.
-
-Alternatively, if you do not wish to update all of your dependencies, but just add the latest version of this package, you may do it through the command line:
+Just run this on the command line:
 
 ```
-composer require creitive/breadcrumbs dev-master
+composer require creitive/breadcrumbs
 ```
-
-If this is not done automatically (which depends on your `composer.json` settings), you should also run `composer dump-autoload`.
 
 After this, you should add the service provider and the alias to your `app/config/app.php`, which should make it look something like this:
 
@@ -58,9 +40,10 @@ return array(
 You're all set!
 
 
-### Manual Installation
+Usage
+-----
 
-This class is usable on its own as well, without the service provider/facade pattern used in Laravel 4. Just take the `src/Creitive/Breadcrumbs/Breadcrumbs.php` file, place it somewhere in your project where it will be autoloaded (or even `require_once` the file, if you're that *hardcore*), instantiate it, and use it:
+The usage manual is described for Laravel 4, using the provided facade - if you wish to use the class standalone, just call these methods on an instance:
 
 ```php
 $breadcrumbs = new Creitive\Breadcrumbs\Breadcrumbs();
@@ -70,11 +53,6 @@ $breadcrumbs->addCrumb('Home', '/');
 echo $breadcrumbs;
 ```
 
-
-Usage
------
-
-The usage manual is described for Laravel 4, using the provided facade - if you wish to use the class standalone, just call these methods on an instance (ie. instead of `Breadcrumbs::addCrumb()`, use `$breadcrumbs->addCrumb()`).
 
 ### Adding a crumb
 
