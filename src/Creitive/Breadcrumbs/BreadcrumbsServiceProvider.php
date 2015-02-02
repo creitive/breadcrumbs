@@ -25,6 +25,8 @@ class BreadcrumbsServiceProvider extends ServiceProvider {
 		{
 			return new Breadcrumbs;
 		});
+
+		$this->app->alias('breadcrumbs', 'Creitive\Breadcrumbs\Breadcrumbs');
 	}
 
 }
