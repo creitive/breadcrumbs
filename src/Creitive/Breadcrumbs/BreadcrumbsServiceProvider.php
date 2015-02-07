@@ -1,6 +1,8 @@
 <?php namespace Creitive\Breadcrumbs;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class BreadcrumbsServiceProvider extends ServiceProvider {
 
@@ -11,7 +13,14 @@ class BreadcrumbsServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('creitive/breadcrumbs');
+        if ($this->isLegacyLaravel() || $this->isOldLaravel())
+        {
+		    $this->package('creitive/breadcrumbs');
+        }
+
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('Breadcrumbs', 'Creitive\Breadcrumbs\Facades\Breadcrumbs');
+
 	}
 
 	/**
@@ -21,12 +30,21 @@ class BreadcrumbsServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+
 		$this->app['breadcrumbs'] = $this->app->share(function($app)
 		{
 			return new Breadcrumbs;
 		});
-
-		$this->app->alias('breadcrumbs', 'Creitive\Breadcrumbs\Breadcrumbs');
 	}
+
+    public function isLegacyLaravel()
+    {
+      return Str::startsWith(Application::VERSION, array('4.1.', '4.2.'));
+    }
+
+    public function isOldLaravel()
+    {
+        return Str::startsWith(Application::VERSION, '4.0.');
+    }
 
 }
