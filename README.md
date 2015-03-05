@@ -1,5 +1,18 @@
 [![Build Status](https://travis-ci.org/CreITive/Laravel-4-Breadcrumbs.png)](https://travis-ci.org/CreITive/Laravel-4-Breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/CreITive/laravel-4-breadcrumbs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+> ## Note on Laravel 5 support
+>
+> We are currently working on adding Laravel 5 support, sorry for being late to the game! We will accomplish this with the following steps:
+>
+> 1. Release a version 2.0.0 of the `creitive/breadcrumbs` package, that doesn't have any Laravel integration at all, but rather, just the actual breadcrumbs functionality.
+> 2. Create a new `creitive/laravel4-breadcrumbs` package, that requires `creitive/breadcrumbs:~2.0`, and contains the code to integrate it with Laravel 4.
+> 3. Create a new `creitive/laravel5-breadcrumbs` package, that requires `creitive/breadcrumbs:~2.0`, and contains the code to integrate it with Laravel 5.
+>
+> This provides a much better separation of concerns, with the base breadcrumbs package providing the core functionality, and the two other packages providing integration for the appropriate framework (and we might as well treat L4 and L5 as separate frameworks). Additionally, current users, who require `creitive/breadcrumbs:~1.0` in their projects will not be affected. As preparations for the upgrade, this repository has been renamed to just "breadcrumbs".
+>
+> If you have any comments or ideas regarding the proposed upgrade path, feel free to open an issue, or comment in the existing [Laravel 5.0 issue](https://github.com/creitive/breadcrumbs/issues/8).
+
+
 Laravel 4 Breadcrumbs
 =====================
 
