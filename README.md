@@ -4,9 +4,19 @@
 >
 > This repository was originally created as a package for Laravel 4, and included a service provider and a facade. Since that time, Laravel 5 came out, which uses slightly different techniques to handle packages. We've contemplated hacking something together to include support for both Laravel 4 and 5 in one package, or having separate branches for that, but in the end, opted for releasing a new major version of this package, `2.0.0`, that doesn't depend on Laravel at all, and instead focuses on the core breadcrumbs functionality.
 >
-> For Laravel support, we will soon be releasing two additional packages - `creitive/laravel4-breadcrumbs` and `creitive/laravel5-breadcrumbs`, which will handle the actual framework integration - they will be linked from this documentation as soon as they are available.
+> For Laravel support use one of the following packages:
 >
-> This was done so as not to break backwards-compatibility for anyone - users with Laravel 4 apps can still depend on `creitive/breadcrumbs:~1.0`, and further updates to that version will be on the `legacy` branch. Additionally, it provides for a proper separation of concerns between packages, and enables others to make their own framework-specific integration packages, if they wish to do so.
+> - Laravel 4: [creitive/laravel4-breadcrumbs](https://github.com/creitive/laravel4-breadcrumbs)
+> - Laravel 5: [creitive/laravel5-breadcrumbs](https://github.com/creitive/laravel5-breadcrumbs)
+>
+> This was done so as not to break backwards-compatibility for anyone - users with Laravel 4 apps can still depend on `creitive/breadcrumbs:~1.0`, and their apps will continue to work. However, the `1.0` version will receive no further updates, because the upgrade process should be real easy, and we urge everyone to do so:
+>
+> ```sh
+> composer remove creitive/breadcrumbs
+> composer require creitive/laravel4-breadcrumbs
+> ```
+>
+> This package reorganization also provides for a proper separation of concerns between packages, and enables others to make their own framework-specific integration packages, if they wish to do so.
 
 
 Breadcrumbs
