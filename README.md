@@ -1,22 +1,18 @@
 [![Build Status](https://travis-ci.org/creitive/breadcrumbs.png)](https://travis-ci.org/creitive/breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs)
 
-> ## Note on Laravel 5 support
+> ## Note on Laravel support
 >
-> We are currently working on adding Laravel 5 support, sorry for being late to the game! We will accomplish this with the following steps:
+> This repository was originally created as a package for Laravel 4, and included a service provider and a facade. Since that time, Laravel 5 came out, which uses slightly different techniques to handle packages. We've contemplated hacking something together to include support for both Laravel 4 and 5 in one package, or having separate branches for that, but in the end, opted for releasing a new major version of this package, `2.0.0`, that doesn't depend on Laravel at all, and instead focuses on the core breadcrumbs functionality.
 >
-> 1. Release a version 2.0.0 of the `creitive/breadcrumbs` package, that doesn't have any Laravel integration at all, but rather, just the actual breadcrumbs functionality.
-> 2. Create a new `creitive/laravel4-breadcrumbs` package, that requires `creitive/breadcrumbs:~2.0`, and contains the code to integrate it with Laravel 4.
-> 3. Create a new `creitive/laravel5-breadcrumbs` package, that requires `creitive/breadcrumbs:~2.0`, and contains the code to integrate it with Laravel 5.
+> For Laravel support, we will soon be releasing two additional packages - `creitive/laravel4-breadcrumbs` and `creitive/laravel5-breadcrumbs`, which will handle the actual framework integration - they will be linked from this documentation as soon as they are available.
 >
-> This provides a much better separation of concerns, with the base breadcrumbs package providing the core functionality, and the two other packages providing integration for the appropriate framework (and we might as well treat L4 and L5 as separate frameworks). Additionally, current users, who require `creitive/breadcrumbs:~1.0` in their projects will not be affected. As preparations for the upgrade, this repository has been renamed to just "breadcrumbs".
->
-> If you have any comments or ideas regarding the proposed upgrade path, feel free to open an issue, or comment in the existing [Laravel 5.0 issue](https://github.com/creitive/breadcrumbs/issues/8).
+> This was done so as not to break backwards-compatibility for anyone - users with Laravel 4 apps can still depend on `creitive/breadcrumbs:~1.0`, and further updates to that version will be on the `legacy` branch. Additionally, it provides for a proper separation of concerns between packages, and enables others to make their own framework-specific integration packages, if they wish to do so.
 
 
-Laravel 4 Breadcrumbs
-=====================
+Breadcrumbs
+===========
 
-*A simple Laravel 4-compatible breadcrumbs package. Generates Twitter Bootstrap-compatible output.*
+*A simple breadcrumbs package. Generates Twitter Bootstrap-compatible output.*
 
 
 Installation
@@ -28,49 +24,27 @@ Just run this on the command line:
 composer require creitive/breadcrumbs
 ```
 
-After this, you should add the service provider and the alias to your `app/config/app.php`, which should make it look something like this:
-
-```php
-return array(
-	// ...
-
-	'providers' => array(
-		// ...
-
-		'Creitive\Breadcrumbs\BreadcrumbsServiceProvider',
-	),
-
-	// ...
-
-	'aliases' => array(
-		// ...
-
-		'Breadcrumbs' => 'Creitive\Breadcrumbs\Facades\Breadcrumbs',
-	),
-);
-```
-
-You're all set!
-
 
 Usage
 -----
 
-The usage manual is described for Laravel 4, using the provided facade - if you wish to use the class standalone, just call these methods on an instance:
+The basic idea is to create an instance of the `Creitive\Breadcrumbs\Breadcrumbs` class somewhere in your app, and add crumbs using the provided methods described below. At a later time, you can just render the output somewhere (likely in a view, depending on your app infrastructure), which will generate Twitter Bootstrap-compatible HTML.
 
 ```php
-$breadcrumbs = new Creitive\Breadcrumbs\Breadcrumbs();
+$breadcrumbs = new Creitive\Breadcrumbs\Breadcrumbs;
 
 $breadcrumbs->addCrumb('Home', '/');
 
-echo $breadcrumbs;
+echo $breadcrumbs->render();
 ```
+
+The rest of the documentation will assume you have a `$breadcrumbs` instance on which you are making calls.
 
 
 ### Adding a crumb
 
 ```php
-Breadcrumbs::addCrumb('Home', '/');
+$breadcrumbs->addCrumb('Home', '/');
 ```
 
 The first argument is the title of the crumb, and the second one is that crumb's address. There are a few ways you can pass the address argument - if this argument begins with a forward slash, or a protocol (`http`/`https`), it will be treated as a complete URL, and the corresponding breadcrumb will link to it as-is. If it does *not* begin with either of those, it will be treated as a segment, and it will be appended to its previous breadcrumb.
@@ -78,13 +52,13 @@ The first argument is the title of the crumb, and the second one is that crumb's
 #### Example
 
 ```php
-Breadcrumbs::addCrumb('Home', '/');
-Breadcrumbs::addCrumb('Pages', 'pages');
-Breadcrumbs::addCrumb('Subpage', 'subpage');
-Breadcrumbs::addCrumb('Subsubpage', '/subsubpage');
-Breadcrumbs::addCrumb('Other website', 'http://otherwebsite.com/some-page');
+$breadcrumbs->addCrumb('Home', '/');
+$breadcrumbs->addCrumb('Pages', 'pages');
+$breadcrumbs->addCrumb('Subpage', 'subpage');
+$breadcrumbs->addCrumb('Subsubpage', '/subsubpage');
+$breadcrumbs->addCrumb('Other website', 'http://otherwebsite.com/some-page');
 
-echo Breadcrumbs::render();
+echo $breadcrumbs->render();
 ```
 
 The third breadcrumb ("Subpage") will link to `/pages/subpage`, building on the previous breadcrumb. However, the fourth breadcrumb will link to `/subsubpage`, because its address starts with a slash. The last breadcrumb will obviously link to the passed URL.
@@ -95,9 +69,9 @@ The third breadcrumb ("Subpage") will link to `/pages/subpage`, building on the 
 Three CSS class manipulation methods are at your disposal, each working more or less similarly:
 
 ```php
-Breadcrumbs::setCssClasses($classes);
-Breadcrumbs::addCssClasses($classes);
-Breadcrumbs::removeCssClasses($classes);
+$breadcrumbs->setCssClasses($classes);
+$breadcrumbs->addCssClasses($classes);
+$breadcrumbs->removeCssClasses($classes);
 ```
 
 Each of these methods manipulates the classes which will be applied to the containing `<ul>` element. All of them may be passed either a string or an array. If passed a string, separate CSS classes should be separated with spaces.
@@ -107,8 +81,8 @@ Each of these methods manipulates the classes which will be applied to the conta
 $stringClasses = 'class1 class2 class3';
 $arrayClasses = array('class4', 'class5');
 
-Breadcrumbs::addCssClasses($stringClasses);
-Breadcrumbs::addCssClasses($arrayClasses);
+$breadcrumbs->addCssClasses($stringClasses);
+$breadcrumbs->addCssClasses($arrayClasses);
 
 // All five classes will now be applied to the containing `<ul>` element.
 ```
@@ -119,7 +93,7 @@ Breadcrumbs::addCssClasses($arrayClasses);
 The default breadcrumb divider is `/`, which is the default used by Twitter Bootstrap. If you'd like to change it to, for example, `»`, you can just do:
 
 ```php
-Breadcrumbs::setDivider('»');
+$breadcrumbs->setDivider('»');
 ```
 
 The dividers are rendered as `<span>`s with the `divider` CSS class. If you would like to use the new Bootstrap 3 HTML (which uses `::before` CSS pseudo-element to style the separators), just set the divider to an empty string or `null`, and those elements will not be rendered at all in the HTML.
@@ -130,36 +104,28 @@ The dividers are rendered as `<span>`s with the `divider` CSS class. If you woul
 The default list element used to wrap the breadcrumbs, is `ul`. To change it, use the setListElement method like so:
 
 ```php
-Breadcrumbs::setListElement('ol');
+$breadcrumbs->setListElement('ol');
 ```
 
 ### Output
 
-Finally, when you actually want to display your breadcrumbs, all you need to do is call the `render()` method from the facade:
+Finally, when you actually want to display your breadcrumbs, all you need to do is call the `render()` method on the instance:
 
 ```php
-echo Breadcrumbs::render();
+echo $breadcrumbs->render();
 ```
 
-If you're using Laravel's Blade templating engine, we recommend you stick to its syntax:
+> **Note:** You can also just echo the instance like this:
+>
+> ```php
+> echo $breadcrumbs;
+> ```
+
+Note that crumb titles are rendered without escaping HTML characters, which was designed for flexibility, allowing you to use, say, `<img>` elements as breadcrumbs. This means that you should escape any text-content yourself when adding crumbs:
 
 ```php
-{{ Breadcrumbs::render() }}
-```
-
-Just make sure you don't use triple braces, so as not to escape the rendered HTML.
-
-The class also implements the `__toString()` magic method, so if you're using the class manually, without the facade, you can just do this:
-
-```php
-echo $breadcrumbs;
-```
-
-Note that crumb titles are rendered without escaping HTML characters, which was designed for flexibility, allowing you to use, say, `<img>` elements as breadcrumbs, which means that you should escape any text-content yourself when adding crumbs:
-
-```php
-Breadcrumbs::addCrumb('<img src="/images/foo.png">', '/foo');
-Breadcrumbs::addCrumb(htmlspecialchars($userSubmittedName), 'bar');
+$breadcrumbs->addCrumb('<img src="/images/foo.png">', '/foo');
+$breadcrumbs->addCrumb(htmlspecialchars($userSubmittedName), 'bar');
 ```
 
 
@@ -172,22 +138,32 @@ So, we usually have a single `BaseController` which all other controlers extend.
 
 Note that the `BaseController` doesn't have any actions (ie. no routes call `BaseController`) - it's literally there to provide a base for all other controllers.
 
-In `BaseController::__construct()`, we usually (among other things) call something like `Breadcrumbs::addCrumb('Home', '/')`, which basically adds a first breadcrumb called "Home", which links to the website root - thus, all pages will always have this breadcrumb first (assuming they render breadcrumbs in their views).
-
-Say we have a `StoreController` that lists various stores available on the website. Of course, this controller extends the `BaseController`, so it's constructor might look something like this:
+In `BaseController::__construct()`, we usually (among other things) store a breadcrumbs instance in the class, to make it available to subclasses, and call something like `$this->breadcrumbs->addCrumb('Home', '/')`, which basically adds a first breadcrumb called "Home", which links to the website root - thus, all pages will always have this breadcrumb first (assuming they render breadcrumbs in their views):
 
 ```php
 public function __construct()
 {
 	parent::__construct();
 
-	Breadcrumbs::addCrumb('Stores', 'stores');
+	$this->breadcrumbs = new \Creitive\Breadcrumbs\Breadcrumbs;
+	$this->breadcrumbs->addCrumb('Home', '/');
+}
+```
+
+Say we have a `StoreController` that lists various stores available on the website. Of course, this controller extends the `BaseController`, so its constructor might look something like this:
+
+```php
+public function __construct()
+{
+	parent::__construct();
+
+	$this->breadcrumbs->addCrumb('Stores', 'stores');
 }
 ```
 
 Now let's say we have an action `getStores` (which lists available stores), and `getStore` (which lists a single store's homepage). `StoreController::getStores()` wouldn't need to add a breadcrumb of its own, since it is already added in that controller's constructor, under the assumption that all of that controller's actions will have that crumb.
 
-Naturally, `StoreController::getStore()` would do something like `Breadcrumbs::addCrumb($store->name, $store->slug)`, so as to add that store's slug as the next breadcrumb.
+Naturally, `StoreController::getStore()` would do something like `$this->breadcrumbs->addCrumb($store->name, $store->slug)`, so as to add that store's slug as the next breadcrumb.
 
 Rendering the breadcrumbs at this point would yield HTML similar to the following (skipping the `ul`, `li` and divider elements for brevity):
 
@@ -204,28 +180,28 @@ public function __construct()
 {
 	parent::__construct();
 
-	Breadcrumbs::removeAll();
-	Breadcrumbs::addCrumb('Home', '/admin');
+	$this->breadcrumbs->removeAll();
+	$this->breadcrumbs->addCrumb('Home', '/admin');
 }
 ```
 
-Now a controller like `Admin\StoreController` (which extends `Admin\BaseController`) can do `Breadcrumbs::addCrumb('Stores', 'stores')` in its constructor (after calling `parent::__construct()` of course), to add its own breadcrumb.
+Now a controller like `Admin\StoreController` (which extends `Admin\BaseController`) can do `$this->breadcrumbs->addCrumb('Stores', 'stores')` in its constructor (after calling `parent::__construct()` of course), to add its own breadcrumb.
 
 For a bit more complex application, we tend not to hardcode routes like that all over the place, so we'll probably do stuff like:
 
 ```php
-Breadcrumbs::addCrumb(Lang::('pages.home'), URL::action('HomeController@getIndex'));
-Breadcrumbs::addCrumb(Lang::('pages.stores'), URL::action('StoreController@getStores'));
-Breadcrumbs::addCrumb($store->name, URL::action('StoreController@getStore', array('storeId' => $store->id)));
+$this->breadcrumbs->addCrumb(Lang::('pages.home'), URL::action('HomeController@getIndex'));
+$this->breadcrumbs->addCrumb(Lang::('pages.stores'), URL::action('StoreController@getStores'));
+$this->breadcrumbs->addCrumb($store->name, URL::action('StoreController@getStore', array('storeId' => $store->id)));
 ```
 
-This is a bit out of the scope of this package's documentation, though, so we won't elaborate much more on that, since it extends into a more general explanation of how to organize your application.
+This is a bit out of the scope of this package's documentation, though, so we won't elaborate much more on that, since it extends into a more general explanation of how to organize your application (and assumes access to some of Laravel's infrastructure, which enables us to generate URLs based on the defined application routes).
 
 
 Recommended CSS
 ---------------
 
-This plugin uses the `breadcrumbs` CSS class on the containing `ul` element by default, which is what we used in our in-house CSS framework. [Bootstrap](http://getbootstrap.com) uses `breadcrumb` by default, so if you're using Bootstrap's CSS, you should configure it with `Breadcrumbs::setCssClasses('breadcrumb')`, for example in `BaseController::__construct()`.
+This plugin uses the `breadcrumbs` CSS class on the containing `ul` element by default, which is what we used in our in-house CSS framework. [Bootstrap](http://getbootstrap.com) uses `breadcrumb` by default, so if you're using Bootstrap's CSS, you should configure it with `$this->breadcrumbs->setCssClasses('breadcrumb')`, for example in `BaseController::__construct()`.
 
 Additionaly, the package will always add the class `active` to the last `li` element (which contains the last breadcrumb added), and a `span` element with a `divider` class will be rendered between all breadcrumbs.
 
