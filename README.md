@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/creitive/breadcrumbs.png)](https://travis-ci.org/CreITive/Laravel-4-Breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/CreITive/laravel-4-breadcrumbs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/creitive/breadcrumbs.png)](https://travis-ci.org/CreITive/Laravel-4-Breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs)
 
 > ## Note on Laravel 5 support
 >
