@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/creitive/breadcrumbs.png)](https://travis-ci.org/CreITive/Laravel-4-Breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs)
+[![Build Status](https://travis-ci.org/creitive/breadcrumbs.png)](https://travis-ci.org/creitive/breadcrumbs) [![Latest Stable Version](https://poser.pugx.org/creitive/breadcrumbs/version.png)](https://packagist.org/packages/creitive/breadcrumbs) [![Total Downloads](https://poser.pugx.org/creitive/breadcrumbs/d/total.png)](https://packagist.org/packages/creitive/breadcrumbs)
 
 > ## Note on Laravel 5 support
 >
