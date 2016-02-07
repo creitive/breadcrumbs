@@ -28,6 +28,12 @@ class Breadcrumbs {
 	 * The DOM-element that wraps the breadcrumbs. Set to ul by default.
 	 */
 	protected $listElement = 'ul';
+	
+	/**
+     * The icon breadcrumbs. 
+     * @var string
+     */
+    protected $icon = '';
 
 	/**
 	 * The class constructor. Accepts an optional array of breadcrumbs, and an
@@ -350,6 +356,35 @@ class Breadcrumbs {
 		$this->listElement = $element;
 	}
 
+/**
+     * Sets the icon breadcrumbs.
+     *
+     * @param string $classIcon
+     */
+    public function setIcon($classIcon)
+    {
+        if (!is_string($classIcon) && !is_null($classIcon))
+        {
+            throw new \InvalidArgumentException(
+                'Breadcrumbs::setIcon() only accepts strings or NULL, but '
+                . (is_object($classIcon) ? get_class($classIcon) : gettype($classIcon))
+                . ' given: ' . print_r($classIcon, true)
+            );
+        }
+
+        $this->icon = " <i class='{$classIcon}'></i> ";
+    }
+
+    /**
+     * Gets the currently icon.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
 	/**
 	 * Gets the currently configured breadcrumbs.
 	 *
@@ -473,6 +508,7 @@ class Breadcrumbs {
 
 		$cssClasses = implode(' ', $this->breadcrumbsCssClasses);
 		return '<'. $this->listElement .' class="' . $cssClasses .'">' 
+		       . $this->icon
 			   . $this->renderCrumbs() 
 			   . '</'. $this->listElement .'>';
 	}
