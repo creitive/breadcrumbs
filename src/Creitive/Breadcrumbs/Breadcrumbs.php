@@ -396,9 +396,10 @@ class Breadcrumbs {
 	 * @param  string  $name
 	 * @param  string  $href
 	 * @param  boolean $isLast
+	 * @param  number  $position
 	 * @return string
 	 */
-	protected function renderCrumb($name, $href, $isLast = false)
+	protected function renderCrumb($name, $href, $isLast = false, $position = null)
 	{
 		if ($this->divider)
 		{
@@ -409,13 +410,26 @@ class Breadcrumbs {
 			$divider = '';
 		}
 
-		if (!$isLast)
+		if ($position != null)
 		{
-			return "<li><a href=\"{$href}\">{$name}</a>{$divider}</li>";
+			$positionMeta = "<meta itemprop=\"position\" content=\"{$position}\" />";
 		}
 		else
 		{
-			return "<li class=\"active\">{$name}</li>";
+			$positionMeta = "";
+		}
+
+		if (!$isLast)
+		{
+			return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" >'
+				. "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
+				. "{$positionMeta}{$divider}</li>";
+		}
+		else
+		{
+			return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+				. "class=\"active\"><span itemprop=\"name\">{$name}</span>"
+				. "{$positionMeta}</li>";
 		}
 	}
 
@@ -432,6 +446,8 @@ class Breadcrumbs {
 		$output = '';
 
 		$hrefSegments = array();
+
+		$position = 1;
 
 		foreach ($this->breadcrumbs as $key => $crumb)
 		{
@@ -453,7 +469,8 @@ class Breadcrumbs {
 				$href = "/{$href}";
 			}
 
-			$output .= $this->renderCrumb($crumb['name'], $href, $isLast);
+			$output .= $this->renderCrumb($crumb['name'], $href, $isLast, $position);
+			$position++;
 		}
 
 		return $output;
@@ -472,8 +489,9 @@ class Breadcrumbs {
 		}
 
 		$cssClasses = implode(' ', $this->breadcrumbsCssClasses);
-		return '<'. $this->listElement .' class="' . $cssClasses .'">' 
-			   . $this->renderCrumbs() 
+		return '<'. $this->listElement . ' itemscope itemtype="http://schema.org/BreadcrumbList"'
+		     .' class="' . $cssClasses .'">'
+			   . $this->renderCrumbs()
 			   . '</'. $this->listElement .'>';
 	}
 
