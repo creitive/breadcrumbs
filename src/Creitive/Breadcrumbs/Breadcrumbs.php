@@ -372,7 +372,7 @@ class Breadcrumbs {
             );
         }
 
-        $this->icon = " <i class='{$classIcon}'></i> ";
+        $this->icon = $classIcon;
     }
 
     /**
@@ -508,7 +508,7 @@ class Breadcrumbs {
 
 		$cssClasses = implode(' ', $this->breadcrumbsCssClasses);
 		return '<'. $this->listElement .' class="' . $cssClasses .'">' 
-		       . $this->icon
+		       . (!is_null($this->icon) ? '<i class="'. $this->icon .'"></i>' : '')
 			   . $this->renderCrumbs() 
 			   . '</'. $this->listElement .'>';
 	}
