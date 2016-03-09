@@ -26,8 +26,13 @@
         "squizlabs/php_codesniffer": "^2.5"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Creitive\\Breadcrumbs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Creitive\\Breadcrumbs\\": "tests"
         }
     },
     "minimum-stability": "dev"
