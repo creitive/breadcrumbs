@@ -23,7 +23,8 @@
         "way/laravel-test-helpers": "dev-master",
         "symfony/dom-crawler": "~2.0",
         "symfony/css-selector": "~2.0",
-        "phpunit/phpunit": "~4.4"
+        "phpunit/phpunit": "~4.4",
+        "squizlabs/php_codesniffer": "^2.5"
     },
     "autoload": {
         "psr-0": {
