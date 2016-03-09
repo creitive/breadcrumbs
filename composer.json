@@ -20,7 +20,6 @@
         "php": ">=5.3.0"
     },
     "require-dev":{
-        "way/laravel-test-helpers": "dev-master",
         "symfony/dom-crawler": "~2.0",
         "symfony/css-selector": "~2.0",
         "phpunit/phpunit": "~4.4",

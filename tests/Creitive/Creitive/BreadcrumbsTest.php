@@ -6,7 +6,6 @@ use Creitive\Breadcrumbs\Breadcrumbs;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\DomCrawler\Crawler;
-use Way\Tests\Assert;
 
 class BreadcrumbsTest extends PHPUnit_Framework_TestCase
 {
@@ -142,12 +141,12 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     public function testIsValidCrumb($crumbs)
     {
         foreach ($crumbs as $key => $validCrumb) {
-            Assert::true(Breadcrumbs::isValidCrumb($validCrumb));
+            $this->assertTrue(Breadcrumbs::isValidCrumb($validCrumb));
         }
 
         $invalidCrumb = array();
 
-        Assert::false(Breadcrumbs::isValidCrumb($invalidCrumb));
+        $this->assertFalse(Breadcrumbs::isValidCrumb($invalidCrumb));
     }
 
     /**
@@ -159,7 +158,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     public function testIsNotValidCrumb($crumbs)
     {
         foreach ($crumbs as $key => $invalidCrumb) {
-            Assert::false(Breadcrumbs::isValidCrumb($invalidCrumb));
+            $this->assertFalse(Breadcrumbs::isValidCrumb($invalidCrumb));
         }
     }
 
@@ -169,13 +168,13 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     public function testCssClassesMethods($classes)
     {
         $b = new Breadcrumbs(array(), $classes);
-        Assert::count(count($classes), $b->getBreadcrumbsCssClasses());
+        $this->assertCount(count($classes), $b->getBreadcrumbsCssClasses());
 
         $b->removeCssClasses($classes);
-        Assert::count(0, $b->getBreadcrumbsCssClasses());
+        $this->assertCount(0, $b->getBreadcrumbsCssClasses());
 
         $b->addCssClasses($classes);
-        Assert::count(count($classes), $b->getBreadcrumbsCssClasses());
+        $this->assertCount(count($classes), $b->getBreadcrumbsCssClasses());
     }
 
     /**
@@ -194,7 +193,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
 
         $dividerText = $crawler->filter('span.divider')->first()->text();
 
-        Assert::same('@', $dividerText);
+        $this->assertSame('@', $dividerText);
     }
 
     /**
@@ -212,7 +211,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
         /**
          * There should only be one `ol` element.
          */
-        Assert::count(1, $crawler->filter('ol'));
+        $this->assertCount(1, $crawler->filter('ol'));
     }
 
     /**
@@ -229,7 +228,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
             $b->addCrumb($crumb);
         }
 
-        Assert::count(count($crumbs), $b->getBreadcrumbs());
+        $this->assertCount(count($crumbs), $b->getBreadcrumbs());
     }
 
     /**
@@ -244,7 +243,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
 
         $b->setBreadcrumbs($crumbs);
 
-        Assert::count(count($crumbs), $b->getBreadcrumbs());
+        $this->assertCount(count($crumbs), $b->getBreadcrumbs());
     }
 
     /**
@@ -278,18 +277,18 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
         /**
          * There should only be one `ul` element.
          */
-        Assert::count(1, $crawler->filter('ul'));
+        $this->assertCount(1, $crawler->filter('ul'));
 
         /**
          * There should be as many `li` elements as there are breadcrumbs in the
          * original data.
          */
-        Assert::count(count($crumbs), $crawler->filter('li'));
+        $this->assertCount(count($crumbs), $crawler->filter('li'));
 
         /**
          * There should be one `span.divider` less than there are breadcrumbs.
          */
-        Assert::count(count($crumbs)-1, $crawler->filter('span.divider'));
+        $this->assertCount(count($crumbs)-1, $crawler->filter('span.divider'));
     }
 
     /**
@@ -310,7 +309,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
         $normalizedUlClasses = explode(' ', trim($ulClasses));
         sort($normalizedUlClasses);
 
-        Assert::same($normalizedExpectedClasses, $normalizedUlClasses);
+        $this->assertSame($normalizedExpectedClasses, $normalizedUlClasses);
     }
 
     /**
@@ -329,7 +328,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
         /**
          * There should be no `span.divider` elements present.
          */
-        Assert::count(0, $crawler->filter('span.divider'));
+        $this->assertCount(0, $crawler->filter('span.divider'));
     }
 
     /**
@@ -347,13 +346,13 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
             $hrefIsFullUrl = $crumb['hrefIsFullUrl'];
 
             if (mb_substr($originalCrumb['href'], 0, 7) === 'http://') {
-                Assert::true($hrefIsFullUrl);
+                $this->assertTrue($hrefIsFullUrl);
             } elseif (mb_substr($originalCrumb['href'], 0, 8) === 'https://') {
-                Assert::true($hrefIsFullUrl);
+                $this->assertTrue($hrefIsFullUrl);
             } elseif (mb_substr($originalCrumb['href'], 0, 1) === '/') {
-                Assert::true($hrefIsFullUrl);
+                $this->assertTrue($hrefIsFullUrl);
             } else {
-                Assert::false($hrefIsFullUrl);
+                $this->assertFalse($hrefIsFullUrl);
             }
         }
     }
@@ -367,7 +366,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     {
         $b = new Breadcrumbs($crumbs);
 
-        Assert::equals(count($crumbs), $b->count());
+        $this->assertEquals(count($crumbs), $b->count());
     }
 
     /**
@@ -377,11 +376,11 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     {
         $b = new Breadcrumbs();
 
-        Assert::true($b->isEmpty());
+        $this->assertTrue($b->isEmpty());
 
         $b->addCrumb('foo', 'bar');
 
-        Assert::false($b->isEmpty());
+        $this->assertFalse($b->isEmpty());
     }
 
     /**
@@ -395,6 +394,6 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
 
         $b->removeAll();
 
-        Assert::true($b->isEmpty());
+        $this->assertTrue($b->isEmpty());
     }
 }
