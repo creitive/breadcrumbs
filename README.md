@@ -138,6 +138,8 @@ $breadcrumbs->addCrumb('<img src="/images/foo.png">', '/foo');
 $breadcrumbs->addCrumb(htmlspecialchars($userSubmittedName), 'bar');
 ```
 
+The output contains microdata markup - see Google's [Structured Data documentation on breadcrumbs](https://developers.google.com/structured-data/breadcrumbs) for more info.
+
 
 Best Practices
 --------------
