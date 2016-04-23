@@ -59,6 +59,11 @@ $breadcrumbs->addCrumb('Home', '/');
 
 The first argument is the title of the crumb, and the second one is that crumb's address. There are a few ways you can pass the address argument - if this argument begins with a forward slash, or a protocol (`http`/`https`), it will be treated as a complete URL, and the corresponding breadcrumb will link to it as-is. If it does *not* begin with either of those, it will be treated as a segment, and it will be appended to its previous breadcrumb.
 
+> **Note**: You can use `add` method instead of `addCrumb` as shortener:
+```php
+$breadcrumbs->add('Home', '/');
+```
+
 #### Example
 
 ```php
@@ -73,6 +78,36 @@ echo $breadcrumbs->render();
 
 The third breadcrumb ("Subpage") will link to `/pages/subpage`, building on the previous breadcrumb. However, the fourth breadcrumb will link to `/subsubpage`, because its address starts with a slash. The last breadcrumb will obviously link to the passed URL.
 
+
+You can also enchain `addCrumb` method in order to add multiple crumbs at once:
+
+```php
+<?php
+
+$breadcrumbs->addCrumb('Home', '/')
+    ->addCrumb('Pages', 'pages')
+    ->addCrumb('Subpage', 'subpage')
+    ->addCrumb('Subsubpage', '/subsubpage')
+    ->addCrumb('Other website', 'http://otherwebsite.com/some-page');
+
+?>
+```
+
+Or using `add`:
+
+```php
+<?php
+
+$breadcrumbs->add('Home', '/')
+    ->add('Pages', 'pages')
+    ->add('Subpage', 'subpage')
+    ->add('Subsubpage', '/subsubpage')
+    ->add('Other website', 'http://otherwebsite.com/some-page');
+
+?>
+```
+
+> **Note**: `add` method is an alias for `addCrumb`.
 
 ### CSS classes
 

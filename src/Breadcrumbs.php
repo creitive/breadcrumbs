@@ -99,7 +99,7 @@ class Breadcrumbs
      *                               automatically forced to `true`, depending
      *                               on the `$href` argument - read its
      *                               description for details.
-     * @return void
+     * @return Breadcrumbs
      */
     public function addCrumb($name = '', $href = '', $hrefIsFullUrl = false)
     {
@@ -120,7 +120,36 @@ class Breadcrumbs
 
             $this->breadcrumbs[] = $crumb;
         }
+
+        return $this;
     }
+
+
+    /**
+     * Adds a crumb to the internal array.
+     * Alias for `Breadcrumbs::addCrumb` method.
+     *
+     * @param string  $name          The name of this breadcrumb, which will be
+     *                               seen by the users.
+     * @param string  $href          If this parameter begins with a forward
+     *                               slash, it will be treated as a full URL,
+     *                               and the `$hrefIsFullUrl` parameter will be
+     *                               forced to `true`, regardless of its value.
+     * @param boolean $hrefIsFullUrl Whether the `$href` argument is a full URL
+     *                               or just a segment. The difference is that
+     *                               segments will be built upon previous
+     *                               breadcrumbs, while full URLs will be
+     *                               returned as they are inputted. This can be
+     *                               automatically forced to `true`, depending
+     *                               on the `$href` argument - read its
+     *                               description for details.
+     * @return Breadcrumbs
+     */
+    public function add($name = '', $href = '', $hrefIsFullUrl = false)
+    {
+        return $this->addCrumb($name, $href, $hrefIsFullUrl);
+    }
+
 
     /**
      * Checks whether a crumb is valid, so that it can safely be added to the
