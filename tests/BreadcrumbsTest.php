@@ -232,7 +232,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @testdox Is able to enchain `AddCrumb` method
+     * @testdox Is able to enchain `addCrumb` method
      * @depends testAddCrumb
      * @dataProvider crumbsProvider
      */
@@ -286,6 +286,80 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
 
         // TODO: Add output test?
     }
+
+
+    /**
+     * @testdox `add` can be used as an alias for `addCrumb` method
+     * @depends testAddCrumb
+     * @dataProvider crumbsProvider
+     */
+    public function testAddCrumbAlias($crumbs)
+    {
+        $b = new Breadcrumbs;
+
+        foreach ($crumbs as $crumb) {
+            $b->add($crumb);
+        }
+
+        $this->assertCount(count($crumbs), $b->getBreadcrumbs());
+    }
+
+    /**
+     * @testdox Is able to enchain `add` method
+     * @depends testIsAbleToEnchainAddCrumbMethod
+     * @dataProvider crumbsProvider
+     */
+    public function testIsAbleToEnchainAddMethod($crumbs)
+    {
+        $b = new Breadcrumbs;
+        $n = count($crumbs);
+
+        switch ($n) {
+            case 1:
+                $b->add($crumbs[0]);
+
+                break;
+
+            case 2:
+                $b->add($crumbs[0])
+                    ->add($crumbs[1]);
+
+                break;
+
+            case 3:
+                $b->add($crumbs[0])
+                    ->add($crumbs[1])
+                    ->add($crumbs[2]);
+
+                break;
+
+            case 4:
+                $b->add($crumbs[0])
+                    ->add($crumbs[1])
+                    ->add($crumbs[2])
+                    ->add($crumbs[3]);
+
+                break;
+
+            case 5:
+                $b->add($crumbs[0])
+                    ->add($crumbs[1])
+                    ->add($crumbs[2])
+                    ->add($crumbs[3])
+                    ->add($crumbs[4]);
+
+                break;
+
+            default:
+                // 0? or > 5?  TODO: add cases
+                break;
+        }
+
+        $this->assertCount($n, $b->getBreadcrumbs());
+
+        // TODO: Add output test?
+    }
+
 
     /**
      * Tests whether setting an array of breadcrumbs at once works, using
