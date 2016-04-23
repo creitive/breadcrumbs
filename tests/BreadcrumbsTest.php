@@ -232,6 +232,62 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @testdox Is able to enchain `AddCrumb` method
+     * @depends testAddCrumb
+     * @dataProvider crumbsProvider
+     */
+    public function testIsAbleToEnchainAddCrumbMethod($crumbs)
+    {
+        $b = new Breadcrumbs;
+        $n = count($crumbs);
+
+        switch ($n) {
+            case 1:
+                $b->addCrumb($crumbs[0]);
+
+                break;
+
+            case 2:
+                $b->addCrumb($crumbs[0])
+                    ->addCrumb($crumbs[1]);
+
+                break;
+
+            case 3:
+                $b->addCrumb($crumbs[0])
+                    ->addCrumb($crumbs[1])
+                    ->addCrumb($crumbs[2]);
+
+                break;
+
+            case 4:
+                $b->addCrumb($crumbs[0])
+                    ->addCrumb($crumbs[1])
+                    ->addCrumb($crumbs[2])
+                    ->addCrumb($crumbs[3]);
+
+                break;
+
+            case 5:
+                $b->addCrumb($crumbs[0])
+                    ->addCrumb($crumbs[1])
+                    ->addCrumb($crumbs[2])
+                    ->addCrumb($crumbs[3])
+                    ->addCrumb($crumbs[4]);
+
+                break;
+
+            default:
+                // 0? or > 5?  TODO: add cases
+                break;
+        }
+
+        $this->assertCount($n, $b->getBreadcrumbs());
+
+        // TODO: Add output test?
+    }
+
+    /**
      * Tests whether setting an array of breadcrumbs at once works, using
      * `Breadcrumbs::setBreadcrumbs()`.
      *

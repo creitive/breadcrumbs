@@ -99,7 +99,7 @@ class Breadcrumbs
      *                               automatically forced to `true`, depending
      *                               on the `$href` argument - read its
      *                               description for details.
-     * @return void
+     * @return Breadcrumbs
      */
     public function addCrumb($name = '', $href = '', $hrefIsFullUrl = false)
     {
@@ -120,6 +120,8 @@ class Breadcrumbs
 
             $this->breadcrumbs[] = $crumb;
         }
+
+        return $this;
     }
 
     /**
