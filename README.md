@@ -64,8 +64,6 @@ The first argument is the title of the crumb, and the second one is that crumb's
 > ```php
 > $breadcrumbs->add('Home', '/');
 > ```
->
-> In fact, method chaining is supported wherever possible, ie. all methods that aren't expected to have a specific return value: `setBreadcrumbs()`, `addCrumb()`, `add()`, `setCssClasses()`, `addCssClasses()`, `removeCssClasses()`, `setDivider()`, `setListElement()`, `removeAll()`.
 
 
 #### Example
@@ -91,6 +89,9 @@ $breadcrumbs->addCrumb('Home', '/')
     ->addCrumb('Subsubpage', '/subsubpage')
     ->addCrumb('Other website', 'http://otherwebsite.com/some-page');
 ```
+
+> **Note**: In fact, method chaining is supported wherever possible, ie. all methods that aren't expected to have a specific return value: `setBreadcrumbs()`, `addCrumb()`, `add()`, `setCssClasses()`, `addCssClasses()`, `removeCssClasses()`, `setDivider()`, `setListElement()`, `removeAll()`.
+
 
 ### CSS classes
 
