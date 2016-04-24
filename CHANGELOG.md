@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0] - 2016-04-24
+### Added
+- `add()` alias for `addCrumb()` (#18)
+- Ability to chain calls to `addCrumb()` and `add()` (#18)
+- Ability to chain calls to `setBreadcrumbs()`, `setCssClasses()`, `addCssClasses()`, `removeCssClasses()`, `setDivider()`, `setListElement()`, `removeAll()`
+
 ## [3.0.0] - 2016-03-09
 ### Added
 - Automatic microdata markup support (#15)
@@ -60,7 +66,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial project release
 
-[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/creitive/breadcrumbs/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/creitive/breadcrumbs/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/creitive/breadcrumbs/compare/v1.0.8...v2.0.0
 [1.0.8]: https://github.com/creitive/breadcrumbs/compare/v1.0.7...v1.0.8
