@@ -3,6 +3,7 @@
 namespace Creitive\Breadcrumbs;
 
 use Creitive\Breadcrumbs\Breadcrumbs;
+use Exception;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\DomCrawler\Crawler;
@@ -278,13 +279,12 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
                 break;
 
             default:
-                // 0? or > 5?  TODO: add cases
+                throw new Exception('Test does not handle more than 5 breadcrumbs.');
+
                 break;
         }
 
         $this->assertCount($n, $b->getBreadcrumbs());
-
-        // TODO: Add output test?
     }
 
 
@@ -351,13 +351,12 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
                 break;
 
             default:
-                // 0? or > 5?  TODO: add cases
+                throw new Exception('Test does not handle more than 5 breadcrumbs.');
+
                 break;
         }
 
         $this->assertCount($n, $b->getBreadcrumbs());
-
-        // TODO: Add output test?
     }
 
 
