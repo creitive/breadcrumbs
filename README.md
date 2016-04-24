@@ -119,7 +119,7 @@ $breadcrumbs->addCssClasses($arrayClasses);
 
 ### Divider
 
-The default breadcrumb divider is `/`, which is the default used by Twitter Bootstrap. If you'd like to change it to, for example, `»`, you can just do:
+The default breadcrumb divider is `/`, which is the default used by [Twitter Bootstrap 2](http://getbootstrap.com/2.3.2/components.html#breadcrumbs). If you'd like to change it to, for example, `»`, you can just do:
 
 ```php
 $breadcrumbs->setDivider('»');
