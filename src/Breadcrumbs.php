@@ -99,7 +99,7 @@ class Breadcrumbs
      *                               automatically forced to `true`, depending
      *                               on the `$href` argument - read its
      *                               description for details.
-     * @return Breadcrumbs
+     * @return $this
      */
     public function addCrumb($name = '', $href = '', $hrefIsFullUrl = false)
     {
@@ -127,6 +127,7 @@ class Breadcrumbs
 
     /**
      * Adds a crumb to the internal array.
+     *
      * Alias for `Breadcrumbs::addCrumb` method.
      *
      * @param string  $name          The name of this breadcrumb, which will be
@@ -143,7 +144,7 @@ class Breadcrumbs
      *                               automatically forced to `true`, depending
      *                               on the `$href` argument - read its
      *                               description for details.
-     * @return Breadcrumbs
+     * @return $this
      */
     public function add($name = '', $href = '', $hrefIsFullUrl = false)
     {
@@ -155,7 +156,7 @@ class Breadcrumbs
      * Checks whether a crumb is valid, so that it can safely be added to the
      * internal breadcrumbs array.
      *
-     * @param  array  $crumb
+     * @param array $crumb
      * @return boolean
      */
     public static function isValidCrumb($crumb)
@@ -256,7 +257,7 @@ class Breadcrumbs
      * Removes one or more CSS classes that have been set by other methods. This
      * method won't fail if the passed class has not been set already.
      *
-     * @param  string|array $cssClasses
+     * @param string|array $cssClasses
      * @return void
      */
     public function removeCssClasses($cssClasses)
@@ -391,10 +392,10 @@ class Breadcrumbs
     /**
      * Renders a single breadcrumb, Twitter Bootstrap-style.
      *
-     * @param  string  $name
-     * @param  string  $href
-     * @param  boolean $isLast
-     * @param  number  $position
+     * @param string $name
+     * @param string $href
+     * @param boolean $isLast
+     * @param number $position
      * @return string
      */
     protected function renderCrumb($name, $href, $isLast = false, $position = null)
