@@ -53,11 +53,10 @@ class Breadcrumbs
      * Sets all the breadcrumbs. Useful for quickly configuring the instance.
      *
      * @param array $breadcrumbs
-     * @return void
+     * @return $this
      */
     public function setBreadcrumbs($breadcrumbs)
     {
-
         if (!is_array($breadcrumbs)) {
             throw new \InvalidArgumentException(
                 'Breadcrumbs::setBreadcrumbs() only accepts arrays, but '
@@ -80,6 +79,8 @@ class Breadcrumbs
                 );
             }
         }
+
+        return $this;
     }
 
     /**
@@ -186,7 +187,7 @@ class Breadcrumbs
      * should be separated with spaces.
      *
      * @param string|array $cssClasses
-     * @return void
+     * @return $this
      */
     public function setCssClasses($cssClasses)
     {
@@ -212,6 +213,8 @@ class Breadcrumbs
         }
 
         $this->breadcrumbsCssClasses = array_unique($cssClasses);
+
+        return $this;
     }
 
     /**
@@ -220,7 +223,7 @@ class Breadcrumbs
      * CSS classes should be separated with spaces.
      *
      * @param string|array $breadcrumbsCssClasses
-     * @return void
+     * @return $this
      */
     public function addCssClasses($cssClasses)
     {
@@ -251,6 +254,8 @@ class Breadcrumbs
         );
 
         $this->breadcrumbsCssClasses = array_unique($cssClasses);
+
+        return $this;
     }
 
     /**
@@ -258,7 +263,7 @@ class Breadcrumbs
      * method won't fail if the passed class has not been set already.
      *
      * @param string|array $cssClasses
-     * @return void
+     * @return $this
      */
     public function removeCssClasses($cssClasses)
     {
@@ -289,6 +294,8 @@ class Breadcrumbs
         );
 
         $this->breadcrumbsCssClasses = array_unique($cssClasses);
+
+        return $this;
     }
 
     /**
@@ -307,6 +314,7 @@ class Breadcrumbs
      * If set to `null`, the divider won't be printed at all.
      *
      * @param string $divider
+     * @return $this
      */
     public function setDivider($divider)
     {
@@ -319,6 +327,8 @@ class Breadcrumbs
         }
 
         $this->divider = $divider;
+
+        return $this;
     }
 
     /**
@@ -335,6 +345,7 @@ class Breadcrumbs
      * Set the containing list DOM element
      *
      * @param string $element
+     * @return $this
      */
     public function setListElement($element)
     {
@@ -347,6 +358,8 @@ class Breadcrumbs
         }
 
         $this->listElement = $element;
+
+        return $this;
     }
 
     /**
@@ -382,11 +395,13 @@ class Breadcrumbs
     /**
      * Removes all breadcrumbs.
      *
-     * @return void
+     * @return $this
      */
     public function removeAll()
     {
         $this->breadcrumbs = array();
+
+        return $this;
     }
 
     /**
