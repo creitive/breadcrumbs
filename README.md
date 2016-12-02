@@ -265,3 +265,7 @@ License
 -------
 
 The code is licensed under the MIT license, which is available in the `LICENSE` file.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/CreITive/laravel-4-breadcrumbs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
