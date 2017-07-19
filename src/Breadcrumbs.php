@@ -28,6 +28,8 @@ class Breadcrumbs
 
     /**
      * The DOM-element that wraps the breadcrumbs. Set to ul by default.
+     *
+     * @var string
      */
     protected $listElement = 'ul';
 
