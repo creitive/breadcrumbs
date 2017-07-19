@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0] - 2017-07-20
+### Added
+- `setListItemCssClass()` method for configuring a custom CSS class that will be applied to each list item element (#20)
+
 ## [3.1.0] - 2016-04-24
 ### Added
 - `add()` alias for `addCrumb()` (#18)
@@ -66,7 +70,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial project release
 
-[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/creitive/breadcrumbs/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/creitive/breadcrumbs/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/creitive/breadcrumbs/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/creitive/breadcrumbs/compare/v1.0.8...v2.0.0

@@ -34,6 +34,13 @@ class Breadcrumbs
     protected $listElement = 'ul';
 
     /**
+     * The CSS class applied to all list items.
+     *
+     * @var string|null
+     */
+    protected $listItemCssClass;
+
+    /**
      * The class constructor. Accepts an optional array of breadcrumbs, and an
      * optional array of CSS classes to be applied to the container element.
      *
@@ -365,6 +372,29 @@ class Breadcrumbs
     }
 
     /**
+     * Set the list item CSS class.
+     *
+     * This CSS class will be added to all list items.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function setListItemCssClass($class)
+    {
+        if (!is_string($class)) {
+            throw new \InvalidArgumentException(
+                'Breadcrumbs::setListItemCssClass() only accepts strings, but '
+                . (is_object($class) ? get_class($class) : gettype($class))
+                . ' given: ' . print_r($class, true)
+            );
+        }
+
+        $this->listItemCssClass = $class;
+
+        return $this;
+    }
+
+    /**
      * Gets the currently configured breadcrumbs.
      *
      * @return array
@@ -430,12 +460,13 @@ class Breadcrumbs
         }
 
         if (!$isLast) {
-            return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" >'
+            return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+                . "class=\"{$this->listItemCssClass}\" >"
                 . "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
                 . "{$positionMeta}{$divider}</li>";
         } else {
             return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
-                . "class=\"active\"><span itemprop=\"name\">{$name}</span>"
+                . "class=\"{$this->listItemCssClass} active\"><span itemprop=\"name\">{$name}</span>"
                 . "{$positionMeta}</li>";
         }
     }

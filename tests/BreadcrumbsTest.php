@@ -461,6 +461,31 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tests that a custom list item CSS class can be set correctly.
+     *
+     * @dataProvider crumbsProvider
+     */
+    public function testCustomListItemCssClass($crumbs)
+    {
+        $expectedClass = 'foocrumb';
+
+        $b = new Breadcrumbs($crumbs);
+
+        $b->setListItemCssClass($expectedClass);
+
+        $crawler = new Crawler($b->render());
+
+        // Correct class on the first item.
+        $liClass = $crawler->filter('li')->first()->attr('class');
+        $this->assertSame($expectedClass, $liClass);
+
+        // Correct classes on the active item.
+        $activeLiClasses = explode(' ', $crawler->filter('li.active')->attr('class'));
+        $this->assertContains('active', $activeLiClasses);
+        $this->assertContains($expectedClass, $activeLiClasses);
+    }
+
+    /**
      * Tests whether full URLs are recognized correctly.
      *
      * @dataProvider crumbsProvider
