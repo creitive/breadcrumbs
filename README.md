@@ -116,6 +116,12 @@ $breadcrumbs->addCssClasses($arrayClasses);
 // All five classes will now be applied to the containing `<ul>` element.
 ```
 
+It's also possible to configure a custom CSS class which will be applied to all list items:
+
+```php
+$breadcrumbs->setListItemCssClass('breadcrumb-item');
+```
+
 
 ### Divider
 
