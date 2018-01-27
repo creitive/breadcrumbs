@@ -7,12 +7,12 @@
     "homepage":"https://github.com/creitive/breadcrumbs",
     "authors": [
         {
-            "name": "Miloš Levačić",
-            "email": "milos.levacic@creitive.rs"
+            "name": "Milos Levacic",
+            "email": "milos.levacic@creitive.com"
         },
         {
             "name": "Luka Macun",
-            "email": "luka.macun@creitive.rs"
+            "email": "luka.macun@creitive.com"
         }
     ],
     "license": "MIT License",
