@@ -15,7 +15,7 @@
             "email": "luka.macun@creitive.com"
         }
     ],
-    "license": "MIT License",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.0"
     },
