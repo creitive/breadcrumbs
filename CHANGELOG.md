@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0] - 2019-06-07
+### Added
+- Add the ability to enable the last item to be a link (#22)
+
+### Fixed
+- Fix microdata bug on last element (#21)
+
+## [3.2.1] - 2018-01-27
+### Fixed
+- Fix `composer.json` license identifier
+- Document how the `setListItemCssClass()` method can be used
+
 ## [3.2.0] - 2017-07-20
 ### Added
 - `setListItemCssClass()` method for configuring a custom CSS class that will be applied to each list item element (#20)
