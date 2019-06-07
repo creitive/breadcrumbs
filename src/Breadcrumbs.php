@@ -41,6 +41,13 @@ class Breadcrumbs
     protected $listItemCssClass;
 
     /**
+     * The last breadcrumb has a href value.
+     *
+     * @var bool
+     */
+    protected $lastItemWithHref = false;
+
+    /**
      * The class constructor. Accepts an optional array of breadcrumbs, and an
      * optional array of CSS classes to be applied to the container element.
      *
@@ -351,6 +358,29 @@ class Breadcrumbs
     }
 
     /**
+     * Sets a bool to allow the last item to have a href.
+     *
+     * @param bool $active
+     * @return $this
+     */
+    public function setLastItemWithHref($active)
+    {
+        $this->lastItemWithHref = $active;
+
+        return $this;
+    }
+
+    /**
+     * Gets the current bool for lastItemWithHref
+     *
+     * @return bool
+     */
+    public function getLastItemWithHref()
+    {
+        return $this->lastItemWithHref;
+    }
+
+    /**
      * Set the containing list DOM element
      *
      * @param string $element
@@ -465,10 +495,17 @@ class Breadcrumbs
                 . "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
                 . "{$positionMeta}{$divider}</li>";
         } else {
-            return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
-                . "class=\"{$this->listItemCssClass} active\"><span itemprop=\"name\">{$name}</span>"
-                . "<meta itemprop=\"item\" content=\"{$href}\" />"
-                . "{$positionMeta}</li>";
+            if ($this->lastItemWithHref) {
+                return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+                    . "class=\"{$this->listItemCssClass} active\">"
+                    . "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
+                    . "{$positionMeta}</li>";
+            } else {
+                return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+                    . "class=\"{$this->listItemCssClass} active\"><span itemprop=\"name\">{$name}</span>"
+                    . "<meta itemprop=\"item\" content=\"{$href}\" />"
+                    . "{$positionMeta}</li>";
+            }
         }
     }
 
