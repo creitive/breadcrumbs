@@ -143,6 +143,17 @@ $breadcrumbs->setListElement('ol');
 ```
 
 
+### Last item as a link
+
+By default, the last item in the list is not rendered as a link. If you wish to change this behavior, you can control it with the `setLastItemWithHref()` method, like this:
+
+```php
+$breadcrumbs->setLastItemWithHref(true);
+```
+
+Of course, you can pass `false` if you wish to turn this behavior off later on, and you can check the current value of this setting with the `getLastItemWithHref()` method.
+
+
 ### Output
 
 Finally, when you actually want to display your breadcrumbs, all you need to do is call the `render()` method on the instance:
