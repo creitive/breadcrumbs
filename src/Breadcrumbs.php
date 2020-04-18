@@ -503,7 +503,6 @@ class Breadcrumbs
             } else {
                 return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
                     . "class=\"{$this->listItemCssClass} active\"><span itemprop=\"name\">{$name}</span>"
-                    . "<meta itemprop=\"item\" content=\"{$href}\" />"
                     . "{$positionMeta}</li>";
             }
         }
