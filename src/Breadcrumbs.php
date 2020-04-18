@@ -329,7 +329,7 @@ class Breadcrumbs
      *
      * If set to `null`, the divider won't be printed at all.
      *
-     * @param string $divider
+     * @param string|null $divider
      * @return $this
      */
     public function setDivider($divider)
