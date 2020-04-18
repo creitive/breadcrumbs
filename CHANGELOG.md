@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.1] - 2020-04-18
+### Fixed
+- The last breadcrumb shouldn't have `href` microdata if not linked (#23)
+
 ## [3.3.0] - 2019-06-07
 ### Added
 - Add the ability to enable the last item to be a link (#22)
@@ -82,7 +86,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial project release
 
-[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/creitive/breadcrumbs/compare/v3.3.1...HEAD
+[3.3.1]: https://github.com/creitive/breadcrumbs/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/creitive/breadcrumbs/compare/v3.2.1...v3.3.0
 [3.2.1]: https://github.com/creitive/breadcrumbs/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/creitive/breadcrumbs/compare/v3.1.0...v3.2.0
