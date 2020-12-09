@@ -8,6 +8,8 @@
 >
 > - Laravel 4: [creitive/laravel4-breadcrumbs](https://github.com/creitive/laravel4-breadcrumbs)
 > - Laravel 5: [creitive/laravel5-breadcrumbs](https://github.com/creitive/laravel5-breadcrumbs)
+> - Laravel 6: [creitive/laravel6-breadcrumbs](https://github.com/creitive/laravel6-breadcrumbs)
+> - Laravel 7+: [creitive/laravel-breadcrumbs](https://github.com/creitive/laravel-breadcrumbs)
 >
 > This was done so as not to break backwards-compatibility for anyone - users with Laravel 4 apps can still depend on `creitive/breadcrumbs:~1.0`, and their apps will continue to work. However, the `1.0` version will receive no further updates, because the upgrade process should be real easy, and we urge everyone to do so:
 >
