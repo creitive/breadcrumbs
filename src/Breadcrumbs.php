@@ -490,18 +490,18 @@ class Breadcrumbs
         }
 
         if (!$isLast) {
-            return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+            return '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" '
                 . "class=\"{$this->listItemCssClass}\" >"
                 . "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
                 . "{$positionMeta}{$divider}</li>";
         } else {
             if ($this->lastItemWithHref) {
-                return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+                return '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" '
                     . "class=\"{$this->listItemCssClass} active\">"
                     . "<a itemprop=\"item\" href=\"{$href}\"><span itemprop=\"name\">{$name}</span></a>"
                     . "{$positionMeta}</li>";
             } else {
-                return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" '
+                return '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" '
                     . "class=\"{$this->listItemCssClass} active\"><span itemprop=\"name\">{$name}</span>"
                     . "{$positionMeta}</li>";
             }
@@ -561,7 +561,7 @@ class Breadcrumbs
 
         $cssClasses = implode(' ', $this->breadcrumbsCssClasses);
 
-        return '<'. $this->listElement . ' itemscope itemtype="http://schema.org/BreadcrumbList"'
+        return '<'. $this->listElement . ' itemscope itemtype="https://schema.org/BreadcrumbList"'
                 .' class="' . $cssClasses .'">'
                 . $this->renderCrumbs()
                 . '</'. $this->listElement .'>';
