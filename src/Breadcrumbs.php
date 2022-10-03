@@ -537,7 +537,7 @@ class Breadcrumbs
 
             $href = implode('/', $hrefSegments);
 
-            if (!preg_match('#^https?://.*#', $href)) {
+            if (!$crumb['hrefIsFullUrl']) {
                 $href = "/{$href}";
             }
 
