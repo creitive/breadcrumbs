@@ -120,13 +120,13 @@ class Breadcrumbs
      */
     public function addCrumb($name = '', $href = '', $hrefIsFullUrl = false)
     {
-        if (mb_substr($href, 0, 1) === '/') {
+        if (!$hrefIsFullUrl && mb_substr($href, 0, 1) === '/') {
             $length = mb_strlen($href);
             $href = mb_substr($href, 1, $length - 1);
             $this->addCrumb($name, $href, true);
-        } elseif ((mb_substr($href, 0, 7) === 'http://') && !$hrefIsFullUrl) {
+        } elseif (!$hrefIsFullUrl && (mb_substr($href, 0, 7) === 'http://')) {
             $this->addCrumb($name, $href, true);
-        } elseif ((mb_substr($href, 0, 8) === 'https://') && !$hrefIsFullUrl) {
+        } elseif (!$hrefIsFullUrl && (mb_substr($href, 0, 8) === 'https://')) {
             $this->addCrumb($name, $href, true);
         } else {
             $crumb = array(
